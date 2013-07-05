@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <title>Cordova</title>
+                <link rel="stylesheet" href="estilo.css" type="text/css">
+                <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+                
+                <script type="text/javascript" charset="utf-8">
+        
+           document.addEventListener("deviceready",onDeviceReady,false);
+           var company='';
+           
+           function onDeviceReady()
+           {
+              var bmensaje=document.getElementById('mensajeCambiar');
+              bmensaje.innerHTML='Listo...';
+              bmensaje.style.backgroundColor='green';
+                                
+           }
+           function buscar()
+           {
+              navigator.notification.prompt("Introduzca compa�ia",onPrompt,"Compa��a",['Ok','Exit'],"");
+             
+           }
+           
+           function onPrompt(resultado)
+           {
+               company=resultado.input1;
+               
+                var options = new ContactFindOptions();
+                options.filter = company;
+                options.multiple=true;
+                var fields = ["displayName","organizations"];
+                navigator.contacts.find(fields, onSuccess, onError, options);
+           }
+           
+           function onSuccess(contactos)
+           { 
+              var bmensaje=document.getElementById('mensajeCambiar');
+              var texto='Total encontrados '+contactos.length+' de la compa�ia:'+company+'<br>';
+              
+              for (var i=0;i<contactos.length;i++)
+              {
+                texto=texto + 'Nombre:'+contactos[i].displayName+'<br> Cargo:'+contactos[i].organizations[0].title+'<br>';
+               
+              }
+              
+              bmensaje.innerHTML=texto;
+              bmensaje.style.backgroundColor='blue';
+           }
+           
+           function onError(error)
+           { 
+              var bmensaje=document.getElementById('mensajeCambiar');
+              bmensaje.innerHTML=error;
+              bmensaje.style.backgroundColor='red';
+           }
+           
+         
+        </script>
+        </head>
+        
+        <body>
+<h1>Prueba agenda </h1>
+     <button onclick="buscar();">Buscar</button>
+     <p id="mensajeCambiar"  style="background-color:white;">Cargando....</p>
+ 
+     
+
+        </body>
+        
+        
+        
+        
+        
+        
+</html>

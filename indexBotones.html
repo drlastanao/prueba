@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cordova</title>
+		<link rel="stylesheet" href="estilo.css" type="text/css">
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+	
+	   document.addEventListener("deviceready",onDeviceReady,false);
+	   
+	   function onDeviceReady()
+	   {
+	        document.addEventListener("menubutton",onMenuButton,false);
+	        document.addEventListener("backbutton",onBackButton,false);
+	        document.addEventListener("searchButton",onSearchButton,false);
+    	   }
+	   
+	   function onMenuButton()
+	   {
+	      cambios("Has pulsado el bot�n menu","Bot�n menu","red");
+	   }
+	   
+	   function onBackButton()
+	   { 
+	      cambios("Has pulsado el bot�n back","Bot�n back","blue");
+	   }
+	   
+	   function onSearchButton()
+	   { 
+	      cambios("Has pulsado el bot�n search","Bot�n search","green");
+	   }
+	   
+	   function cambios(alerta,texto,color)
+	   {
+	   	  alert(alerta);
+	     
+	      var bmensaje=document.getElementById('mensajeCambiar');
+	      bmensaje.innerHTML=texto;
+	      bmensaje.style.backgroundColor=color;
+
+	   
+	   }
+	   
+	</script>
+	</head>
+	
+	<body>
+<h1>Prueba botones </h1>
+
+     <p id="mensajeCambiar"  style="background-color:white;">>Cargando....</p>
+ 
+     
+
+	</body>
+	
+	
+	
+	
+	
+	
+</html>
